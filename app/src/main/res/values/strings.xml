@@ -1,0 +1,48 @@
+<resources>
+    <string name="app_name">Lorestan Gardesh</string>
+    <string name="gardeshgar" translatable="false">Gardeshgar</string>
+    <string name="test_string" translatable="false">TEST TEST TEST TEST TEST TEST</string>
+    <string name="search_bar_hint">Search places and events</string>
+    <string name="home">Home</string>
+    <string name="locations">Locations</string>
+    <string name="events">Events</string>
+    <string name="for_you">For you</string>
+    <string name="around_you">Around you</string>
+    <string name="popular">Popular</string>
+    <string name="tourism">Tourism</string>
+    <string name="travel">Travel</string>
+    <string name="near_places_label">Places and events near you</string>
+    <string name="tours">Tours</string>
+    <string name="travel_tickets">Travel tickets</string>
+    <string name="tools">Tools</string>
+    <string name="schedule_tour">Schedule Tour</string>
+    <string name="tour_scheduler">Tour Scheduler</string>
+    <string name="distance_calculator">Distance Calculator</string>
+    <string name="navigate">Navigate</string>
+    <string name="username">Username</string>
+    <string name="test_text">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua Egestas purus viverra accumsan in nisl nisi Arcu cursus vitae congue mauris rhoncus aenean vel elit scelerisque In egestas erat imperdiet sed euismod nisi porta lorem mollis Morbi tristique senectus et netus</string>
+    <string name="reviews">Reviews</string>
+    <string name="tenth">/10</string>
+    <string name="sign_up">Sign Up</string>
+    <string name="tourism_scheduler">Tourism Scheduler</string>
+    <string name="radius">Radius</string>
+    <string name="city">City</string>
+    <string name="province">Province</string>
+    <string name="number_limit">Number Limit</string>
+    <string name="calculate">Calculate</string>
+    <string name="settings">Settings</string>
+    <string name="reserved_tours">ًReserved Tours</string>
+    <string name="favourites">Favourites</string>
+    <string name="current_location">Current Location</string>
+    <string name="selected_location">Selected Location</string>
+    <string name="starting_point">Starting Point</string>
+    <string name="add_passenger">Add Passenger</string>
+    <string name="expenses">Expenses</string>
+    <string name="rules">Rules</string>
+    <string name="gallery">Photos Gallery</string>
+    <string name="schedule">Schedule</string>
+    <string name="saved">Saved</string>
+    <string name="saved_items">Saved Items</string>
+    <string name="hours_per_day">Hours Per Day</string>
+    <string name="days">Days</string>
+</resources>

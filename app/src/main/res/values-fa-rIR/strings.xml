@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Lorestan Gardesh</string>
+    <string name="search_bar_hint">جستجوی مکان ها و رویداد ها</string>
+    <string name="home">خانه</string>
+    <string name="locations">مکان ها</string>
+    <string name="events">رویداد ها</string>
+    <string name="for_you">برای شما</string>
+    <string name="around_you">اطراف شما</string>
+    <string name="popular">محبوب</string>
+    <string name="tourism">گردشگری</string>
+    <string name="travel">سفر</string>
+    <string name="near_places_label">مکان ها و رویداد های نزدیک شما</string>
+    <string name="tours">تور ها</string>
+    <string name="travel_tickets">بلیط سفر</string>
+    <string name="tools">ابزار ها</string>
+    <string name="tour_scheduler">برنامه ریز گردش</string>
+    <string name="distance_calculator">حسابگر مسافت</string>
+    <string name="navigate">" مسیریابی"</string>
+    <string name="username">نام کاربری</string>
+    <string name="test_text">لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک است چاپگرها و متون بلکه روزنامه و مجله در ستون و سطرآنچنان که لازم است و برای شرایط فعلی تکنولوژی مورد نیاز و کاربردهای متنوع با هدف بهبود ابزارهای کاربردی می باشد.</string>
+    <string name="reviews">نقد ها</string>
+    <string name="tenth">/۱۰</string>
+    <string name="sign_up">ثبت نام</string>
+    <string name="tourism_scheduler">برنامه ریز گردش</string>
+    <string name="radius">شعاع</string>
+    <string name="city">شهر</string>
+    <string name="province">استان</string>
+    <string name="number_limit">محدودیت تعداد</string>
+    <string name="calculate">محاسبه</string>
+    <string name="settings">تنظیمات</string>
+    <string name="reserved_tours">تور های رزرو شده</string>
+    <string name="favourites">علاقه‌مندی ها</string>
+    <string name="current_location">مکان فعلی</string>
+    <string name="selected_location">انتخاب مکان</string>
+    <string name="starting_point">نقطه شروع</string>
+    <string name="add_passenger">اضافه کردن مسافر</string>
+    <string name="expenses">هزینه ها</string>
+    <string name="rules">قوانین</string>
+    <string name="gallery">آلبوم عکس ها</string>
+    <string name="schedule">برنامه ریزی</string>
+    <string name="saved">ذخیره شد</string>
+    <string name="saved_items">ذخیره شده ها</string>
+    <string name="hours_per_day">ساعت در روز</string>
+    <string name="days">تعداد روز ها</string>
+</resources>
