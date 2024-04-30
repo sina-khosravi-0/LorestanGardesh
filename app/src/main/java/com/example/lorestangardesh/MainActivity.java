@@ -3,19 +3,26 @@ package com.example.lorestangardesh;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.app.AppCompatDelegate;
+import androidx.appcompat.graphics.drawable.DrawerArrowDrawable;
 import androidx.core.os.LocaleListCompat;
 import androidx.core.widget.NestedScrollView;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 
 import android.content.Context;
+import android.content.res.Configuration;
+import android.content.res.Resources;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
+import android.view.animation.PathInterpolator;
+import android.view.animation.TranslateAnimation;
 
 import com.example.lorestangardesh.ui.main.HomeFragment;
 import com.example.lorestangardesh.ui.main.TourismFragment;
 import com.example.lorestangardesh.ui.main.YouFragment;
 import com.google.android.material.appbar.AppBarLayout;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.google.android.material.color.MaterialColors;
 import com.google.android.material.search.SearchBar;
 import com.google.android.material.search.SearchView;
 import com.google.android.material.transition.MaterialFadeThrough;
@@ -37,17 +44,24 @@ public class MainActivity extends AppCompatActivity {
     private Fragment Fragment2;
     private Fragment previousFragment;
 
+
     @Override
     protected void attachBaseContext(Context newBase) {
-        Locale locale = new Locale("fa");
-        AppCompatDelegate.setApplicationLocales(LocaleListCompat.create(locale));
         super.attachBaseContext(newBase);
+        // todo:Change app language based on user preferences
+        Locale locale = new Locale("fa");
+        Locale.setDefault(locale);
+        Resources resources = getResources();
+        Configuration configuration = resources.getConfiguration();
+        configuration.setLocale(locale);
+        resources.updateConfiguration(configuration, resources.getDisplayMetrics());
     }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
 
         FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
         getSupportFragmentManager().getFragments().forEach(transaction::remove);
@@ -89,20 +103,10 @@ public class MainActivity extends AppCompatActivity {
             bottomNavigationView.setSelectedItemId(savedInstanceState.getInt("selectedId"));
         }
 
-//        bottomNavigationView.setSelectedItemId(R.id.bottom_nav_item_1);
 //        TranslateAnimation translateAnimation = new TranslateAnimation(0, 0, 0, 100);
 //        translateAnimation.setInterpolator(new PathInterpolator(0.05f, 0.7f, 0.1f, 1f));
 //        bottomNavigationView.setAnimation(translateAnimation);
 
-//        new Thread(() -> {
-//            try {
-//                Thread.sleep(3000);
-//            } catch (InterruptedException e) {
-//            }
-//            runOnUiThread(() -> {
-//                bottomNavigationView.setVisibility(View.GONE);
-//            });
-//        }).start();
     }
 
     @Override
@@ -131,5 +135,14 @@ public class MainActivity extends AppCompatActivity {
             previousFragment = existingFragment;
         }
         transaction.commit();
+    }
+
+    @Override
+    public void onBackPressed() {
+        if (searchView.isShowing()) {
+            searchView.hide();
+        } else {
+            super.onBackPressed();
+        }
     }
 }

@@ -142,24 +142,24 @@ public class HomeFragment extends Fragment {
                     });
                 }).start();
 
-//                new Thread(() -> {
-//                    TextView title = view.findViewById(R.id.travel_tickets_title);
-//                    RecyclerView travelTicketCardRecycler = view.findViewById(R.id.travel_tickets_card_view_recycler);
-//                    MediumCardViewRecyclerAdapter mediumCardViewRecyclerAdapter3 = new MediumCardViewRecyclerAdapter(Arrays
-//                            .asList(new MediumCardItem(( R.drawable.falk),
-//                                    "بلیظ اتوبوس", "اتوبوس بین شهری"), new MediumCardItem(( R.drawable.falk2),
-//                                    "بلیط هواپیما", "هواپیمای داخلی")));
-//                    LinearLayoutManager linearLayoutManager3 = new LinearLayoutManager(context);
-//                    linearLayoutManager3.setOrientation(LinearLayoutManager.HORIZONTAL);
-//
-//
-//                    activity.runOnUiThread(() -> {
-//                        travelTicketCardRecycler.setAdapter(mediumCardViewRecyclerAdapter3);
-//                        travelTicketCardRecycler.setLayoutManager(linearLayoutManager3);
-//                        travelTicketCardRecycler.setVisibility(View.VISIBLE);
-//                        title.setVisibility(View.VISIBLE);
-//                    });
-//                }).start();
+                new Thread(() -> {
+                    TextView title = view.findViewById(R.id.travel_tickets_title);
+                    RecyclerView travelTicketCardRecycler = view.findViewById(R.id.travel_tickets_card_view_recycler);
+                    MediumCardViewRecyclerAdapter mediumCardViewRecyclerAdapter3 = new MediumCardViewRecyclerAdapter(Arrays
+                            .asList(new MediumCardItem(( R.drawable.falk),
+                                    "بلیط اتوبوس", "اتوبوس بین شهری"), new MediumCardItem(( R.drawable.falk2),
+                                    "بلیط هواپیما", "هواپیمای داخلی")));
+                    LinearLayoutManager linearLayoutManager3 = new LinearLayoutManager(context);
+                    linearLayoutManager3.setOrientation(LinearLayoutManager.HORIZONTAL);
+
+
+                    activity.runOnUiThread(() -> {
+                        travelTicketCardRecycler.setAdapter(mediumCardViewRecyclerAdapter3);
+                        travelTicketCardRecycler.setLayoutManager(linearLayoutManager3);
+                        travelTicketCardRecycler.setVisibility(View.VISIBLE);
+                        title.setVisibility(View.VISIBLE);
+                    });
+                }).start();
 
             } catch (IllegalStateException ignored) {
 

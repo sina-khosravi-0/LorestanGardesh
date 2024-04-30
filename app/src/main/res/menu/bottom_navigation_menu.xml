@@ -5,11 +5,12 @@
         android:enabled="true"
         android:icon="@drawable/baseline_home_24"
         android:title="@string/home"/>
+
     <item
         android:id="@+id/bottom_nav_item_2"
         android:enabled="true"
-        android:icon="@drawable/baseline_map_24"
-        android:title="@string/tourism"/>
+        android:icon="@drawable/toolbox"
+        android:title="@string/tools"/>
 <!--    <item-->
 <!--        android:id="@+id/bottom_nav_item_3"-->
 <!--        android:enabled="true"-->

@@ -31,9 +31,7 @@
         <com.google.android.material.appbar.AppBarLayout
             android:id="@+id/top_appbar"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:clickable="false"
-            android:focusable="false">
+            android:layout_height="wrap_content">
 
             <com.google.android.material.search.SearchBar
                 android:id="@+id/search_bar"
@@ -43,18 +41,18 @@
                 android:focusable="true"
                 android:hint="@string/search_bar_hint"
                 app:menu="@menu/topbar_menu" />
-
         </com.google.android.material.appbar.AppBarLayout>
-
 
         <com.google.android.material.search.SearchView
             android:id="@+id/search_view"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+
             android:hint="@string/search_bar_hint"
-            app:layout_anchor="@id/search_bar"
-            tools:visibility="gone">
+            app:layout_anchor="@id/search_bar">
+
         </com.google.android.material.search.SearchView>
+
     </androidx.coordinatorlayout.widget.CoordinatorLayout>
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
