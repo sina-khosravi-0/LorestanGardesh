@@ -9,7 +9,7 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.lorestangardesh.databinding.FragmentReviewItemBinding;
+import com.example.lorestangardesh.databinding.ItemsFragmentReviewItemBinding;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -24,8 +24,7 @@ public class ReviewRecyclerAdapter extends RecyclerView.Adapter<ReviewRecyclerAd
     @NonNull
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        System.out.println("oncreate");
-        return new ViewHolder(FragmentReviewItemBinding.inflate(LayoutInflater.from(parent.getContext()), parent, false));
+        return new ViewHolder(ItemsFragmentReviewItemBinding.inflate(LayoutInflater.from(parent.getContext()), parent, false));
     }
 
     @Override
@@ -48,7 +47,7 @@ public class ReviewRecyclerAdapter extends RecyclerView.Adapter<ReviewRecyclerAd
         private final ImageButton likeButton;
         private final TextView reviewText;
 
-        public ViewHolder(@NonNull FragmentReviewItemBinding binding) {
+        public ViewHolder(@NonNull ItemsFragmentReviewItemBinding binding) {
             super(binding.getRoot());
             profilePicture = binding.pfpImageView;
             usernameTextView = binding.usernameTextView;

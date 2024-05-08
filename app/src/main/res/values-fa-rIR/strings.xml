@@ -9,7 +9,7 @@
     <string name="around_you">اطراف شما</string>
     <string name="popular">محبوب</string>
     <string name="tourism">گردشگری</string>
-    <string name="travel">سفر</string>
+    <string name="traveling">سفر</string>
     <string name="near_places_label">مکان ها و رویداد های نزدیک شما</string>
     <string name="tours">تور ها</string>
     <string name="travel_tickets">بلیط سفر</string>
@@ -23,7 +23,7 @@
     <string name="tenth">/۱۰</string>
     <string name="sign_up">ثبت نام</string>
     <string name="tourism_scheduler">برنامه ریز گردش</string>
-    <string name="radius">شعاع</string>
+    <string name="radius">محدوده</string>
     <string name="city">شهر</string>
     <string name="province">استان</string>
     <string name="number_limit">محدودیت تعداد</string>
@@ -43,4 +43,25 @@
     <string name="saved_items">ذخیره شده ها</string>
     <string name="hours_per_day">ساعت در روز</string>
     <string name="days">تعداد روز ها</string>
+    <string name="account">حساب</string>
+    <string name="antiquities">آثار باستانی</string>
+    <string name="nature">طبیعت</string>
+    <string name="bazaar">بازار</string>
+    <string name="museum">موزه ها</string>
+    <string name="most_related">مرتبط ترین</string>
+    <string name="closest">نزدیک ترین</string>
+    <string name="farthest">دور ترین</string>
+    <string name="most_popular">محبوب ترین</string>
+    <string name="most_visited">پر بازدید ترین</string>
+    <string name="search">جستجو</string>
+    <string name="bus">اتوبوس</string>
+    <string name="flight_tickets">پرواز</string>
+    <string name="translator">مترجم</string>
+    <string name="smart_assistant">دستیار هوشمند</string>
+    <string name="scheduler">برنامه‌ریز</string>
+    <string name="hotels">هتل</string>
+    <string name="bus_tickets">بلیط اتوبوس</string>
+    <string name="start">مبدأ</string>
+    <string name="destination">مقصد</string>
+    <string name="departure_date">روز حرکت</string>
 </resources>

@@ -13,7 +13,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.lorestangardesh.R;
-import com.example.lorestangardesh.databinding.FragmentSmallCardItemBinding;
+import com.example.lorestangardesh.databinding.ItemsFragmentSmallCardItemBinding;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -30,7 +30,7 @@ public class SmallCardViewRecyclerAdapter extends RecyclerView.Adapter<SmallCard
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         this.context = parent.getContext().getApplicationContext();
-        return new ViewHolder(FragmentSmallCardItemBinding
+        return new ViewHolder(ItemsFragmentSmallCardItemBinding
                 .inflate(LayoutInflater.from(parent.getContext()), parent, false));
     }
 
@@ -56,7 +56,7 @@ public class SmallCardViewRecyclerAdapter extends RecyclerView.Adapter<SmallCard
     public static class ViewHolder extends RecyclerView.ViewHolder {
         private final TextView text;
 
-        public ViewHolder(FragmentSmallCardItemBinding binding) {
+        public ViewHolder(ItemsFragmentSmallCardItemBinding binding) {
             super(binding.getRoot());
             text = binding.text;
         }

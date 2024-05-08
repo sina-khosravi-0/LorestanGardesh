@@ -16,7 +16,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.example.lorestangardesh.R;
-import com.example.lorestangardesh.databinding.FragmentMediumCardItemBinding;
+import com.example.lorestangardesh.databinding.ItemsFragmentMediumCardItemBinding;
 import com.example.lorestangardesh.values.Constants;
 
 import java.util.ArrayList;
@@ -37,13 +37,12 @@ public class MediumCardViewRecyclerAdapter extends RecyclerView.Adapter<MediumCa
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         this.context = parent.getContext().getApplicationContext();
-        return new ViewHolder(FragmentMediumCardItemBinding.inflate(LayoutInflater.from(parent.getContext()), parent, false));
+        return new ViewHolder(ItemsFragmentMediumCardItemBinding.inflate(LayoutInflater.from(parent.getContext()), parent, false));
     }
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
 //        holder.image.setImageBitmap(items.get(position).image);
-        System.out.println(items.get(position).imageId);
         Glide.with(holder.itemView.getContext()).load(items.get(position).imageId).diskCacheStrategy(DiskCacheStrategy.ALL).into(holder.image);
         holder.title.setText(items.get(position).title);
         holder.description.setText(items.get(position).description);
@@ -79,7 +78,7 @@ public class MediumCardViewRecyclerAdapter extends RecyclerView.Adapter<MediumCa
         private final TextView title;
         private final TextView description;
 
-        public ViewHolder(FragmentMediumCardItemBinding itemBinding) {
+        public ViewHolder(ItemsFragmentMediumCardItemBinding itemBinding) {
             super(itemBinding.getRoot());
             setIsRecyclable(false);
             image = itemBinding.cardImage;

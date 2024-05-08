@@ -144,7 +144,7 @@
         android:focusable="true"
         android:text="لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک است چاپگرها و متون بلکه روزنامه و مجله در ستون و سطرآنچنان که لازم است و برای شرایط فعلی تکنولوژی مورد نیاز و کاربردهای متنوع با هدف بهبود ابزارهای کاربردی می باشد کتابهای زیادی در شصت و سه درصد گذشته حال و آینده"
         android:textSize="16sp"
-        app:drawableBottomCompat="@drawable/baseline_keyboard_arrow_down_24"
+        app:drawableBottomCompat="@drawable/ic_expand_more"
         app:drawableTint="?attr/colorPrimary"
         app:layout_constraintTop_toBottomOf="@+id/textView18"
         tools:layout_editor_absoluteX="12dp" />

@@ -29,7 +29,7 @@ public class PassengerFragment extends Fragment {
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.fragment_passenger, container, false);
+        return inflater.inflate(R.layout.tour_items_fragment_passenger, container, false);
     }
 
     @Override

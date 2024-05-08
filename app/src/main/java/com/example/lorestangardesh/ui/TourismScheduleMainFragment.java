@@ -27,7 +27,7 @@ public class TourismScheduleMainFragment extends Fragment {
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.fragment_tourism_schedule_main, container, false);
+        return inflater.inflate(R.layout.tour_fragment_tourism_schedule_main, container, false);
     }
 
     @Override

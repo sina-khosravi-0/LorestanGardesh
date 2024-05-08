@@ -18,6 +18,7 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
+import com.example.lorestangardesh.BusTicketActivity;
 import com.example.lorestangardesh.ui.PlaceEventFragment;
 import com.example.lorestangardesh.R;
 import com.example.lorestangardesh.ui.tour.TourActivity;
@@ -25,6 +26,7 @@ import com.example.lorestangardesh.ui.carousel.CarouselItem;
 import com.example.lorestangardesh.ui.carousel.CarouselRecyclerAdapter;
 import com.example.lorestangardesh.ui.mediumcard.MediumCardItem;
 import com.example.lorestangardesh.ui.mediumcard.MediumCardViewRecyclerAdapter;
+import com.google.android.material.button.MaterialButton;
 import com.google.android.material.carousel.CarouselLayoutManager;
 import com.google.android.material.carousel.CarouselSnapHelper;
 import com.google.android.material.carousel.HeroCarouselStrategy;
@@ -51,12 +53,17 @@ public class HomeFragment extends Fragment {
         // Inflate the layout for this fragment
         this.activity = requireActivity();
         this.context = activity.getApplicationContext();
-        return inflater.inflate(R.layout.fragment_home, container, false);
+        return inflater.inflate(R.layout.mainpage_fragment_home, container, false);
     }
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+        MaterialButton busTicketButton = view.findViewById(R.id.bus_ticket_button);
+
+        busTicketButton.setOnClickListener(v -> {
+            requireActivity().startActivity(new Intent(requireContext(), BusTicketActivity.class));
+        });
 
         new Thread(() -> {
             Glide.get(context).clearDiskCache();
@@ -120,46 +127,46 @@ public class HomeFragment extends Fragment {
                     });
                 }).start();
 
-                new Thread(() -> {
-                    TextView title = view.findViewById(R.id.tours_title);
-                    RecyclerView toursCardRecycler = view.findViewById(R.id.tours_card_view_recycler);
-                    LinearLayoutManager linearLayoutManager2 = new LinearLayoutManager(context);
-                    linearLayoutManager2.setOrientation(LinearLayoutManager.HORIZONTAL);
-                    MediumCardViewRecyclerAdapter mediumCardViewRecyclerAdapter2 = new MediumCardViewRecyclerAdapter(Arrays
-                            .asList(new MediumCardItem((R.drawable.falk),
-                                            "تور گردشگری", "تور گردشگری نوروزی"),
-                                    new MediumCardItem((R.drawable.falk2),
-                                            "تور", "تور گردشگری خارجی")));
-                    mediumCardViewRecyclerAdapter2.setOnItemClickListener(v -> {
-                        startActivity(new Intent(getContext(), TourActivity.class));
+//                new Thread(() -> {
+//                    TextView title = view.findViewById(R.id.tours_title);
+//                    RecyclerView toursCardRecycler = view.findViewById(R.id.tours_card_view_recycler);
+//                    LinearLayoutManager linearLayoutManager2 = new LinearLayoutManager(context);
+//                    linearLayoutManager2.setOrientation(LinearLayoutManager.HORIZONTAL);
+//                    MediumCardViewRecyclerAdapter mediumCardViewRecyclerAdapter2 = new MediumCardViewRecyclerAdapter(Arrays
+//                            .asList(new MediumCardItem((R.drawable.falk),
+//                                            "تور گردشگری", "تور گردشگری نوروزی"),
+//                                    new MediumCardItem((R.drawable.falk2),
+//                                            "تور", "تور گردشگری خارجی")));
+//                    mediumCardViewRecyclerAdapter2.setOnItemClickListener(v -> {
+//                        startActivity(new Intent(getContext(), TourActivity.class));
+//
+//                    });
+//                    activity.runOnUiThread(() -> {
+//                        toursCardRecycler.setAdapter(mediumCardViewRecyclerAdapter2);
+//                        toursCardRecycler.setLayoutManager(linearLayoutManager2);
+//                        toursCardRecycler.setVisibility(View.VISIBLE);
+//                        title.setVisibility(View.VISIBLE);
+//                    });
+//                }).start();
 
-                    });
-                    activity.runOnUiThread(() -> {
-                        toursCardRecycler.setAdapter(mediumCardViewRecyclerAdapter2);
-                        toursCardRecycler.setLayoutManager(linearLayoutManager2);
-                        toursCardRecycler.setVisibility(View.VISIBLE);
-                        title.setVisibility(View.VISIBLE);
-                    });
-                }).start();
-
-                new Thread(() -> {
-                    TextView title = view.findViewById(R.id.travel_tickets_title);
-                    RecyclerView travelTicketCardRecycler = view.findViewById(R.id.travel_tickets_card_view_recycler);
-                    MediumCardViewRecyclerAdapter mediumCardViewRecyclerAdapter3 = new MediumCardViewRecyclerAdapter(Arrays
-                            .asList(new MediumCardItem(( R.drawable.falk),
-                                    "بلیط اتوبوس", "اتوبوس بین شهری"), new MediumCardItem(( R.drawable.falk2),
-                                    "بلیط هواپیما", "هواپیمای داخلی")));
-                    LinearLayoutManager linearLayoutManager3 = new LinearLayoutManager(context);
-                    linearLayoutManager3.setOrientation(LinearLayoutManager.HORIZONTAL);
-
-
-                    activity.runOnUiThread(() -> {
-                        travelTicketCardRecycler.setAdapter(mediumCardViewRecyclerAdapter3);
-                        travelTicketCardRecycler.setLayoutManager(linearLayoutManager3);
-                        travelTicketCardRecycler.setVisibility(View.VISIBLE);
-                        title.setVisibility(View.VISIBLE);
-                    });
-                }).start();
+//                new Thread(() -> {
+//                    TextView title = view.findViewById(R.id.travel_tickets_title);
+//                    RecyclerView travelTicketCardRecycler = view.findViewById(R.id.travel_tickets_card_view_recycler);
+//                    MediumCardViewRecyclerAdapter mediumCardViewRecyclerAdapter3 = new MediumCardViewRecyclerAdapter(Arrays
+//                            .asList(new MediumCardItem(( R.drawable.falk),
+//                                    "بلیط اتوبوس", "اتوبوس بین شهری"), new MediumCardItem(( R.drawable.falk2),
+//                                    "بلیط هواپیما", "هواپیمای داخلی")));
+//                    LinearLayoutManager linearLayoutManager3 = new LinearLayoutManager(context);
+//                    linearLayoutManager3.setOrientation(LinearLayoutManager.HORIZONTAL);
+//
+//
+//                    activity.runOnUiThread(() -> {
+//                        travelTicketCardRecycler.setAdapter(mediumCardViewRecyclerAdapter3);
+//                        travelTicketCardRecycler.setLayoutManager(linearLayoutManager3);
+//                        travelTicketCardRecycler.setVisibility(View.VISIBLE);
+//                        title.setVisibility(View.VISIBLE);
+//                    });
+//                }).start();
 
             } catch (IllegalStateException ignored) {
 

@@ -43,7 +43,6 @@ public final class BottomNavigationBehavior extends CoordinatorLayout.Behavior<B
 
             @Override
             public void onAnimationEnd(@NonNull Animator animator) {
-                System.out.println(animationFinished);
                 animationFinished = true;
             }
 

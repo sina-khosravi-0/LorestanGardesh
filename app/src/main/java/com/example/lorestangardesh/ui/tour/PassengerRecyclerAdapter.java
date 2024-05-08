@@ -9,7 +9,7 @@ package com.example.lorestangardesh.ui.tour;
 //import androidx.annotation.NonNull;
 //import androidx.recyclerview.widget.RecyclerView;
 //
-//import com.example.myapplication.databinding.FragmentPassengerItemBinding;
+//import com.example.myapplication.databinding.TourItemsFragmentPassengerItemBinding;
 //import com.google.android.material.button.MaterialButton;
 //import com.google.android.material.textfield.TextInputLayout;
 //
@@ -27,7 +27,7 @@ public class PassengerRecyclerAdapter /*extends RecyclerView.Adapter<PassengerRe
 //    @NonNull
 //    @Override
 //    public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-//        return new ViewHolder(FragmentPassengerItemBinding.inflate(LayoutInflater.from(parent.getContext()), parent, false));
+//        return new ViewHolder(TourItemsFragmentPassengerItemBinding.inflate(LayoutInflater.from(parent.getContext()), parent, false));
 //    }
 //
 //    @Override
@@ -69,7 +69,7 @@ public class PassengerRecyclerAdapter /*extends RecyclerView.Adapter<PassengerRe
 //        private final TextInputLayout birthdateInputLayout;
 //        private final TextInputLayout codeInputLayout;
 //
-//        public ViewHolder(FragmentPassengerItemBinding binding) {
+//        public ViewHolder(TourItemsFragmentPassengerItemBinding binding) {
 //            super(binding.getRoot());
 //            index = binding.itemIndexTextView;
 //            displayName = binding.displayNameTextview;

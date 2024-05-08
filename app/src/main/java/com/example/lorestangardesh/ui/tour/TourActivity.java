@@ -21,7 +21,7 @@ public class TourActivity extends AppCompatActivity {
 
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
-        setContentView(R.layout.activity_tour);
+        setContentView(R.layout.tour_activity_tour);
         ExtendedFloatingActionButton eFab = findViewById(R.id.signup_fab);
         mainFragment = TourMainFragment.newInstance();
         Fragment reserveFragment = ReserveTourFragment.newInstance();

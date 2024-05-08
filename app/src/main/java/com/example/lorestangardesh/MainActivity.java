@@ -3,7 +3,6 @@ package com.example.lorestangardesh;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.app.AppCompatDelegate;
-import androidx.appcompat.graphics.drawable.DrawerArrowDrawable;
 import androidx.core.os.LocaleListCompat;
 import androidx.core.widget.NestedScrollView;
 import androidx.fragment.app.Fragment;
@@ -12,17 +11,13 @@ import androidx.fragment.app.FragmentTransaction;
 import android.content.Context;
 import android.content.res.Configuration;
 import android.content.res.Resources;
-import android.graphics.drawable.Drawable;
 import android.os.Bundle;
-import android.view.animation.PathInterpolator;
-import android.view.animation.TranslateAnimation;
 
 import com.example.lorestangardesh.ui.main.HomeFragment;
-import com.example.lorestangardesh.ui.main.TourismFragment;
+import com.example.lorestangardesh.ui.main.SearchFragment;
 import com.example.lorestangardesh.ui.main.YouFragment;
 import com.google.android.material.appbar.AppBarLayout;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
-import com.google.android.material.color.MaterialColors;
 import com.google.android.material.search.SearchBar;
 import com.google.android.material.search.SearchView;
 import com.google.android.material.transition.MaterialFadeThrough;
@@ -47,21 +42,27 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     protected void attachBaseContext(Context newBase) {
-        super.attachBaseContext(newBase);
         // todo:Change app language based on user preferences
-        Locale locale = new Locale("fa");
+        Locale locale = new Locale("en");
         Locale.setDefault(locale);
-        Resources resources = getResources();
+        Resources resources = newBase.getResources();
         Configuration configuration = resources.getConfiguration();
         configuration.setLocale(locale);
         resources.updateConfiguration(configuration, resources.getDisplayMetrics());
+        Context newContext = newBase.createConfigurationContext(configuration);
+        newContext.getResources().getConfiguration().setLayoutDirection(locale);
+        super.attachBaseContext(newContext);
     }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.mainpage_activity_main);
 
+        //todo: make locale change not restart activity everytime.
+        Locale locale = new Locale("en");
+        Locale.setDefault(locale);
+        AppCompatDelegate.setApplicationLocales(LocaleListCompat.create(locale));
 
         FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
         getSupportFragmentManager().getFragments().forEach(transaction::remove);
@@ -77,7 +78,7 @@ public class MainActivity extends AppCompatActivity {
         homeFragment.setEnterTransition(new MaterialFadeThrough());
         homeFragment.setExitTransition(new MaterialFadeThrough());
 
-        tourismFragment = TourismFragment.newInstance();
+        tourismFragment = SearchFragment.newInstance();
         tourismFragment.setEnterTransition(new MaterialFadeThrough());
         tourismFragment.setExitTransition(new MaterialFadeThrough());
 
@@ -118,8 +119,6 @@ public class MainActivity extends AppCompatActivity {
     void loadFragment(Fragment fragment, String tag) {
         FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
         Fragment existingFragment = getSupportFragmentManager().findFragmentByTag(tag);
-
-        System.out.println(existingFragment);
 
         if (existingFragment == null) {
             transaction.add(R.id.content_place_holder, fragment, tag);

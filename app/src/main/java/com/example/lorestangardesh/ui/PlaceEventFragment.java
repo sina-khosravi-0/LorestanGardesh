@@ -30,6 +30,7 @@ public class PlaceEventFragment extends AppCompatActivity {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
         setContentView(R.layout.activity_place_event);
 
         RecyclerView carousel = findViewById(R.id.carousel);

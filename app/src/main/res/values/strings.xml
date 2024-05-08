@@ -10,7 +10,7 @@
     <string name="around_you">Around you</string>
     <string name="popular">Popular</string>
     <string name="tourism">Tourism</string>
-    <string name="travel">Travel</string>
+    <string name="traveling">Traveling</string>
     <string name="near_places_label">Places and events near you</string>
     <string name="tours">Tours</string>
     <string name="travel_tickets">Travel tickets</string>
@@ -45,4 +45,25 @@
     <string name="saved_items">Saved Items</string>
     <string name="hours_per_day">Hours Per Day</string>
     <string name="days">Days</string>
+    <string name="account">Account</string>
+    <string name="antiquities">Antiquities</string>
+    <string name="nature">Nature</string>
+    <string name="bazaar">Bazaar</string>
+    <string name="museum">Museums</string>
+    <string name="most_related">Most Related</string>
+    <string name="closest">Closest</string>
+    <string name="farthest">Farthest</string>
+    <string name="most_popular">Most Popular</string>
+    <string name="most_visited">Most Visited</string>
+    <string name="search">Search</string>
+    <string name="bus">Bus</string>
+    <string name="flight_tickets">Flight</string>
+    <string name="translator">Translator</string>
+    <string name="smart_assistant">Assistant</string>
+    <string name="scheduler">Scheduler</string>
+    <string name="hotels">Hotels</string>
+    <string name="bus_tickets">Bus Tickets</string>
+    <string name="start">Start</string>
+    <string name="destination">Destination</string>
+    <string name="departure_date">Departure Date</string>
 </resources>

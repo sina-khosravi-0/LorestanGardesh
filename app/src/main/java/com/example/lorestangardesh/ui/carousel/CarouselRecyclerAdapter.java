@@ -17,7 +17,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.example.lorestangardesh.R;
-import com.example.lorestangardesh.databinding.FragmentCarouselItemBinding;
+import com.example.lorestangardesh.databinding.ItemsFragmentCarouselItemBinding;
 import com.example.lorestangardesh.values.Constants;
 import com.google.android.material.tabs.TabLayout;
 
@@ -29,7 +29,7 @@ public class CarouselRecyclerAdapter extends RecyclerView.Adapter<CarouselRecycl
     };
     private Context context;
     private TabLayout tabLayout = null;
-    RecyclerView recyclerView;
+    private RecyclerView recyclerView;
 
     public CarouselRecyclerAdapter(List<CarouselItem> items) {
 
@@ -56,7 +56,7 @@ public class CarouselRecyclerAdapter extends RecyclerView.Adapter<CarouselRecycl
     @NonNull
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        FragmentCarouselItemBinding binding = FragmentCarouselItemBinding.inflate(LayoutInflater.from(
+        ItemsFragmentCarouselItemBinding binding = ItemsFragmentCarouselItemBinding.inflate(LayoutInflater.from(
                 parent.getContext()), parent, false);
         return new ViewHolder(binding);
     }
@@ -112,7 +112,7 @@ public class CarouselRecyclerAdapter extends RecyclerView.Adapter<CarouselRecycl
         private final LinearLayout textContainer;
 
 
-        public ViewHolder(FragmentCarouselItemBinding binding) {
+        public ViewHolder(ItemsFragmentCarouselItemBinding binding) {
             super(binding.getRoot());
             image = binding.carouselImageView;
             image.setLayerType(View.LAYER_TYPE_SOFTWARE, null);

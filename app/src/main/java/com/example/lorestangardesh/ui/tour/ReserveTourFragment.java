@@ -33,7 +33,7 @@ public class ReserveTourFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_reserve_tour, container, false);
+        return inflater.inflate(R.layout.tour_fragment_reserve_tour, container, false);
     }
 
     @Override

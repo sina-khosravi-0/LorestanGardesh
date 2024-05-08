@@ -149,7 +149,7 @@
                 android:textSize="16sp"
                 app:drawableTint="?attr/colorPrimary"
                 app:layout_constraintTop_toBottomOf="@+id/show_directions_btn"
-                app:drawableBottomCompat="@drawable/baseline_keyboard_arrow_down_24" />
+                app:drawableBottomCompat="@drawable/ic_expand_more" />
 
             <com.google.android.material.card.MaterialCardView
                 android:id="@+id/reviews_card_view"
@@ -227,6 +227,6 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
-            tools:listitem="@layout/fragment_review_item" />
+            tools:listitem="@layout/items_fragment_review_item" />
     </LinearLayout>
 </androidx.coordinatorlayout.widget.CoordinatorLayout>
