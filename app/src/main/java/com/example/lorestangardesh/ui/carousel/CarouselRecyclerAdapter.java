@@ -1,6 +1,8 @@
 package com.example.lorestangardesh.ui.carousel;
 
-import android.content.Context;
+import android.app.Activity;
+import android.app.ActivityOptions;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -17,6 +19,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.example.lorestangardesh.R;
+import com.example.lorestangardesh.FullScreenImageActivity;
 import com.example.lorestangardesh.databinding.ItemsFragmentCarouselItemBinding;
 import com.example.lorestangardesh.values.Constants;
 import com.google.android.material.tabs.TabLayout;
@@ -25,21 +28,22 @@ import java.util.List;
 
 public class CarouselRecyclerAdapter extends RecyclerView.Adapter<CarouselRecyclerAdapter.ViewHolder> {
     private List<CarouselItem> items;
-    private OnItemClickListener onItemClickListener = v -> {
-    };
-    private Context context;
+    private Activity activity;
     private TabLayout tabLayout = null;
     private RecyclerView recyclerView;
 
     public CarouselRecyclerAdapter(List<CarouselItem> items) {
+        this.items = items;
+    }
 
+    public CarouselRecyclerAdapter(List<CarouselItem> items, Activity activity) {
+        this.activity = activity;
         this.items = items;
     }
 
     @Override
     public void onAttachedToRecyclerView(@NonNull RecyclerView recyclerView) {
         super.onAttachedToRecyclerView(recyclerView);
-        this.context = recyclerView.getContext().getApplicationContext();
         this.recyclerView = recyclerView;
 //        if (tabLayout != null) {
 //            items.forEach(item -> {
@@ -67,19 +71,25 @@ public class CarouselRecyclerAdapter extends RecyclerView.Adapter<CarouselRecycl
         Glide.with(recyclerView.getContext()).load(items.get(position).imageId).diskCacheStrategy(DiskCacheStrategy.ALL).into(holder.image);
         holder.title.setText(items.get(position).title);
         holder.description.setText(items.get(position).description);
-        holder.image.setTransitionName("image_" + position);
-        holder.itemView.setOnClickListener(view -> {
-            onItemClickListener.onClick(holder.image);
-        });
 //        setAnimation(holder.itemView, position);
         if (items.get(position).title == null && items.get(position).description == null) {
             holder.textContainer.setVisibility(View.GONE);
         }
+        holder.image.setOnClickListener(v -> {
+            ActivityOptions options = ActivityOptions.makeSceneTransitionAnimation(
+                    activity,
+                    recyclerView,
+                    "gallery");
+            Intent intent = new Intent(activity, FullScreenImageActivity.class);
+            intent.putExtra("carouselPosition", position);
+            System.out.println(position);
+            activity.startActivity(intent, options.toBundle());
+        });
     }
 
     private void setAnimation(View viewToAnimate, int position) {
         // If the bound view wasn't previously displayed on screen, it's animated
-        Animation animation = AnimationUtils.loadAnimation(context, R.anim.card_enter_anim);
+        Animation animation = AnimationUtils.loadAnimation(activity, R.anim.card_enter_anim);
         animation.setDuration(Constants.REVEAL_ANIMATION_DURATION);
         animation.setInterpolator(new PathInterpolator(0.05f, 0.7f, 0.1f, 1f));
         viewToAnimate.startAnimation(animation);
@@ -88,10 +98,6 @@ public class CarouselRecyclerAdapter extends RecyclerView.Adapter<CarouselRecycl
     @Override
     public int getItemCount() {
         return items.size();
-    }
-
-    public void setOnItemClickListener(OnItemClickListener onItemClickListener) {
-        this.onItemClickListener = onItemClickListener;
     }
 
     /**
@@ -103,9 +109,11 @@ public class CarouselRecyclerAdapter extends RecyclerView.Adapter<CarouselRecycl
 
     public interface OnItemClickListener {
         void onClick(ImageView imageView);
+
+        void onClick(int position);
     }
 
-    public static class ViewHolder extends RecyclerView.ViewHolder {
+    public class ViewHolder extends RecyclerView.ViewHolder {
         private final ImageView image;
         private final TextView title;
         private final TextView description;
@@ -119,6 +127,17 @@ public class CarouselRecyclerAdapter extends RecyclerView.Adapter<CarouselRecycl
             title = binding.carouselTitle;
             description = binding.carouselDescription;
             textContainer = binding.carouselItemTextContainer;
+            if (getAdapterPosition() != RecyclerView.NO_POSITION) {
+                image.setOnClickListener(v -> {
+                    ActivityOptions options = ActivityOptions.makeSceneTransitionAnimation(
+                            activity,
+                            recyclerView,
+                            "gallery");
+                    Intent intent = new Intent(activity, FullScreenImageActivity.class);
+                    intent.putExtra("carouselPosition", getAdapterPosition());
+                    activity.startActivity(intent, options.toBundle());
+                });
+            }
         }
     }
 }

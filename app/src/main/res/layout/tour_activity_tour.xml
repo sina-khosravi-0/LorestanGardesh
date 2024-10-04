@@ -5,10 +5,10 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.tour.TourActivity">
+    tools:context=".ui.tours.single.TourActivity">
 
     <ScrollView
-        android:id="@+id/scroll_view"
+        android:id="@+id/chat_bubble_recycler"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
         <RelativeLayout

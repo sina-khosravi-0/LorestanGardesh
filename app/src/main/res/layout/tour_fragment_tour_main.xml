@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:padding="12dp"
-    tools:context=".ui.tour.TourMainFragment">
+    tools:context=".ui.tours.single.TourMainFragment">
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/carousel"

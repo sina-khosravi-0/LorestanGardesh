@@ -1,6 +1,7 @@
 package com.example.lorestangardesh.ui.main;
 
 import android.animation.LayoutTransition;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -16,6 +17,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.lorestangardesh.R;
+import com.example.lorestangardesh.ui.PlaceEventActivity;
 import com.example.lorestangardesh.ui.searchresult.SearchResultItem;
 import com.example.lorestangardesh.ui.searchresult.SearchResultRecyclerAdapter;
 import com.google.android.material.chip.Chip;
@@ -49,11 +51,11 @@ public class SearchFragment extends Fragment {
         ChipGroup filterChipGroup = view.findViewById(R.id.filter_chip_group);
         ChipGroup sortTypeChipGroup = view.findViewById(R.id.sort_type_chip_group);
         Chip sortTypeChip = view.findViewById(R.id.sort_type_chip);
-        RecyclerView searchResultRecyclerView = view.findViewById(R.id.search_results_recycler);
+        RecyclerView searchResultRecyclerView = view.findViewById(R.id.tour_items_recycler);
 
         sortTypeChip.setOnClickListener(v -> {
             PopupMenu popupMenu = new PopupMenu(requireContext(), sortTypeChip);
-            popupMenu.inflate(R.menu.sort_type_menu);
+            popupMenu.inflate(R.menu.sort_place_type_menu);
             popupMenu.setOnMenuItemClickListener(item -> {
                 sortTypeChip.setText(item.getTitle());
                 return true;
@@ -80,6 +82,10 @@ public class SearchFragment extends Fragment {
                         "طبیعت لرستان", "قابل بازدید")));
         searchResultRecyclerView.setAdapter(searchResultAdapter);
         searchResultRecyclerView.setLayoutManager(new LinearLayoutManager(requireContext()));
+
+        searchResultAdapter.setOnItemClickListener(position -> {
+            startActivity(new Intent(requireActivity(), PlaceEventActivity.class));
+        });
 
 //        for (int i = 0; i < filterChipGroup.getChildCount(); i++) {
 //            Chip chip = (Chip) filterChipGroup.getChildAt(i);

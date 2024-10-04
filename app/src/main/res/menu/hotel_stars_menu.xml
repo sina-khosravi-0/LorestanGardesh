@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/star_item_1"
+        android:enabled="true"
+        android:title="@string/_1_star" />
+    <item
+        android:id="@+id/star_item_2"
+        android:enabled="true"
+        android:title="@string/_2_star" />
+    <item
+        android:id="@+id/star_item_3"
+        android:enabled="true"
+        android:title="@string/_3_star" />
+    <item
+        android:id="@+id/star_item_4"
+        android:enabled="true"
+        android:title="@string/_4_star" />
+    <item
+        android:id="@+id/star_item_5"
+        android:enabled="true"
+        android:title="@string/_5_star" />
+</menu>

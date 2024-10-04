@@ -8,28 +8,41 @@
         android:enableOnBackInvokedCallback="true"
         android:fullBackupContent="@xml/backup_rules"
         android:icon="@mipmap/ic_launcher"
-        android:label="@string/app_name"
+        android:label="Test Application"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.MyApplication"
         tools:targetApi="31">
         <activity
-            android:name=".BusTicketActivity"
+            android:name=".ui.flight.FlightMainActivity"
             android:exported="false" />
         <activity
-            android:name=".ui.TourismScheduleActivity"
+            android:name=".ui.bus.BusMainActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ui.tours.ToursListActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ui.hotel.HotelsListActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ui.scheduler.TouristSchedulerActivity"
             android:configChanges="orientation|screenSize"
             android:exported="false" />
         <activity
-            android:name=".ui.tour.TourActivity"
+            android:name=".ui.assistant.AssistantChatActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ui.tours.single.TourActivity"
             android:configChanges="orientation|screenSize"
             android:exported="false" />
         <activity
-            android:name=".ui.PlaceEventFragment"
+            android:name=".ui.PlaceEventActivity"
             android:exported="false" />
         <activity
-            android:name=".TestImageActivity"
+            android:name=".FullScreenImageActivity"
             android:exported="false" />
+
         <activity
             android:name=".MainActivity"
             android:exported="true">

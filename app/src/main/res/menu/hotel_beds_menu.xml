@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/beds_item_1"
+        android:enabled="true"
+        android:title="@string/_1_bed" />
+    <item
+        android:id="@+id/beds_item_2"
+        android:enabled="true"
+        android:title="@string/_2_beds" />
+    <item
+        android:id="@+id/beds_item_3"
+        android:enabled="true"
+        android:title="@string/_3_beds" />
+    <item
+        android:id="@+id/beds_item_4"
+        android:enabled="true"
+        android:title="@string/_4_beds" />
+    <item
+        android:id="@+id/beds_item_5"
+        android:enabled="true"
+        android:title="@string/_5_beds" />
+</menu>

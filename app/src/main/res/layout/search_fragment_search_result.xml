@@ -51,7 +51,7 @@
                 android:textSize="16sp" />
 
             <TextView
-                android:id="@+id/open_state"
+                android:id="@+id/service_status"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"

@@ -7,12 +7,17 @@ import androidx.core.os.LocaleListCompat;
 import androidx.core.widget.NestedScrollView;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Context;
+import android.content.Intent;
 import android.content.res.Configuration;
 import android.content.res.Resources;
 import android.os.Bundle;
+import android.view.Window;
 
+import com.example.lorestangardesh.ui.PlaceEventActivity;
 import com.example.lorestangardesh.ui.main.HomeFragment;
 import com.example.lorestangardesh.ui.main.SearchFragment;
 import com.example.lorestangardesh.ui.main.YouFragment;
@@ -21,7 +26,9 @@ import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.search.SearchBar;
 import com.google.android.material.search.SearchView;
 import com.google.android.material.transition.MaterialFadeThrough;
+import com.google.android.material.transition.platform.MaterialContainerTransformSharedElementCallback;
 
+import java.util.Arrays;
 import java.util.Locale;
 
 public class MainActivity extends AppCompatActivity {
@@ -42,27 +49,54 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     protected void attachBaseContext(Context newBase) {
-        // todo:Change app language based on user preferences
-        Locale locale = new Locale("en");
+//        // todo:Change app language based on user preferences
+//        Locale locale = new Locale("en");
+//        Locale.setDefault(locale);
+//        Resources resources = newBase.getResources();
+//        Configuration configuration = resources.getConfiguration();
+//        configuration.setLocale(locale);
+//        resources.updateConfiguration(configuration, resources.getDisplayMetrics());
+//        Context newContext = newBase.createConfigurationContext(configuration);
+//        newContext.getResources().getConfiguration().setLayoutDirection(locale);
+//        super.attachBaseContext(newContext);
+        Locale locale = new Locale("fa");
+//        Locale locale = Locale.getDefault();
         Locale.setDefault(locale);
-        Resources resources = newBase.getResources();
-        Configuration configuration = resources.getConfiguration();
-        configuration.setLocale(locale);
-        resources.updateConfiguration(configuration, resources.getDisplayMetrics());
-        Context newContext = newBase.createConfigurationContext(configuration);
-        newContext.getResources().getConfiguration().setLayoutDirection(locale);
-        super.attachBaseContext(newContext);
+        AppCompatDelegate.setApplicationLocales(LocaleListCompat.create(locale));
+
+        super.attachBaseContext(newBase);
     }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.mainpage_activity_main);
+        getWindow().requestFeature(Window.FEATURE_ACTIVITY_TRANSITIONS);
+        setExitSharedElementCallback(new MaterialContainerTransformSharedElementCallback());
+        getWindow().setSharedElementsUseOverlay(false);
 
-        //todo: make locale change not restart activity everytime.
-        Locale locale = new Locale("en");
-        Locale.setDefault(locale);
-        AppCompatDelegate.setApplicationLocales(LocaleListCompat.create(locale));
+        setContentView(R.layout.activity_main);
+
+//        //todo: make locale change not restart activity everytime.
+//        System.out.println("hi");
+        Locale locale = new Locale("fa");
+        LocaleListCompat localeListCompat = LocaleListCompat.create(locale);
+        if (AppCompatDelegate.getApplicationLocales() != localeListCompat) {
+            AppCompatDelegate.setApplicationLocales(localeListCompat);
+//        Locale locale = Locale.getDefault();
+        }
+
+        RecyclerView searchSuggestionRecycler = findViewById(R.id.search_suggestion_recycler);
+        SearchSuggestionRecyclerAdapter searchSuggestionRecyclerAdapter =
+                new SearchSuggestionRecyclerAdapter(Arrays.asList(
+                        new SearchSuggestionItem(R.drawable.falk, "فلک الافلاک", "آثار باستانی خرم آباد"),
+                        new SearchSuggestionItem(R.drawable.falk, "آبشار بیشه", "طبیعت لرستان"),
+                        new SearchSuggestionItem(R.drawable.falk, "فلک الافلاک", "آثار باستانی خرم آباد")
+                ));
+        searchSuggestionRecyclerAdapter.setOnItemClickListener(position -> {
+            startActivity(new Intent(this, PlaceEventActivity.class));
+        });
+        searchSuggestionRecycler.setAdapter(searchSuggestionRecyclerAdapter);
+        searchSuggestionRecycler.setLayoutManager(new LinearLayoutManager(this));
 
         FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
         getSupportFragmentManager().getFragments().forEach(transaction::remove);

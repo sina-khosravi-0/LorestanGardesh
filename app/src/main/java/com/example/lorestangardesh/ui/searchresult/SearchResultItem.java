@@ -4,14 +4,14 @@ public class SearchResultItem {
     int imageId;
     String title;
     String supportText;
-    String openState;
+    String serviceStatus;
     public SearchResultItem(int imageId,
                             String title,
                             String supportText,
-                            String openState) {
+                            String serviceStatus) {
         this.imageId = imageId;
         this.title = title;
         this.supportText = supportText;
-        this.openState = openState;
+        this.serviceStatus = serviceStatus;
     }
 }

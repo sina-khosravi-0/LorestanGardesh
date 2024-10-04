@@ -24,9 +24,9 @@
         android:layout_marginTop="8dp"
         android:clipChildren="false"
         android:clipToPadding="false"
+        android:transitionName="gallery"
         android:visibility="gone"
         app:layout_constraintTop_toBottomOf="@+id/textView22"
-        tools:layout_editor_absoluteX="12dp"
         tools:visibility="visible" />
 
     <TextView
@@ -84,6 +84,7 @@
             app:iconSize="35dp" />
 
         <com.google.android.material.button.MaterialButton
+            android:id="@+id/flight_ticket_button"
             style="@style/Widget.Material3.Button.IconButton"
             android:layout_columnWeight="1"
             android:text="@string/flight_tickets"
@@ -93,6 +94,7 @@
             app:iconSize="35dp" />
 
         <com.google.android.material.button.MaterialButton
+            android:id="@+id/tours_button"
             style="@style/Widget.Material3.Button.IconButton"
             android:layout_columnWeight="1"
             android:text="@string/tours"
@@ -101,9 +103,10 @@
             app:iconSize="35dp" />
 
         <com.google.android.material.button.MaterialButton
+            android:id="@+id/hotels_button"
             style="@style/Widget.Material3.Button.IconButton"
-            android:layout_columnWeight="1"
             android:layout_column="1"
+            android:layout_columnWeight="1"
             android:text="@string/hotels"
             app:icon="@drawable/baseline_hotel_24"
             app:iconGravity="top"
@@ -131,34 +134,37 @@
         tools:layout_editor_absoluteX="12dp">
 
         <com.google.android.material.button.MaterialButton
+            android:id="@+id/translator_button"
+            style="@style/Widget.Material3.Button.IconButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            style="@style/Widget.Material3.Button.IconButton"
             android:layout_columnWeight="1"
-            android:text="@string/translator"
             android:layout_weight="1"
+            android:text="@string/translator"
             app:icon="@drawable/ic_translate"
             app:iconGravity="top"
             app:iconSize="35dp" />
 
         <com.google.android.material.button.MaterialButton
+            android:id="@+id/assistant_button"
             style="@style/Widget.Material3.Button.IconButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
             android:layout_columnWeight="1"
+            android:layout_weight="1"
             android:text="@string/smart_assistant"
             app:icon="@drawable/ic_assistant"
             app:iconGravity="top"
             app:iconSize="35dp" />
 
         <com.google.android.material.button.MaterialButton
+            android:id="@+id/scheduler_button"
             style="@style/Widget.Material3.Button.IconButton"
-            android:layout_columnWeight="1"
-            android:text="@string/scheduler"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_columnWeight="1"
             android:layout_weight="1"
+            android:text="@string/scheduler"
             app:icon="@drawable/ic_schedule"
             app:iconGravity="top"
             app:iconSize="35dp" />

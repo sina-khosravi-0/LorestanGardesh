@@ -18,10 +18,15 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
-import com.example.lorestangardesh.BusTicketActivity;
-import com.example.lorestangardesh.ui.PlaceEventFragment;
+import com.example.lorestangardesh.TranslatorActivity;
+import com.example.lorestangardesh.ui.assistant.AssistantChatActivity;
+import com.example.lorestangardesh.ui.bus.BusMainActivity;
+import com.example.lorestangardesh.ui.flight.FlightMainActivity;
+import com.example.lorestangardesh.ui.hotel.HotelsListActivity;
+import com.example.lorestangardesh.ui.tours.ToursListActivity;
+import com.example.lorestangardesh.ui.PlaceEventActivity;
 import com.example.lorestangardesh.R;
-import com.example.lorestangardesh.ui.tour.TourActivity;
+import com.example.lorestangardesh.ui.scheduler.TouristSchedulerActivity;
 import com.example.lorestangardesh.ui.carousel.CarouselItem;
 import com.example.lorestangardesh.ui.carousel.CarouselRecyclerAdapter;
 import com.example.lorestangardesh.ui.mediumcard.MediumCardItem;
@@ -35,8 +40,6 @@ import java.util.Arrays;
 
 public class HomeFragment extends Fragment {
 
-    private Activity activity;
-    private Context context;
 
     public static HomeFragment newInstance() {
         return new HomeFragment();
@@ -51,8 +54,6 @@ public class HomeFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        this.activity = requireActivity();
-        this.context = activity.getApplicationContext();
         return inflater.inflate(R.layout.mainpage_fragment_home, container, false);
     }
 
@@ -60,13 +61,38 @@ public class HomeFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         MaterialButton busTicketButton = view.findViewById(R.id.bus_ticket_button);
+        MaterialButton flightTicketButton = view.findViewById(R.id.flight_ticket_button);
+        MaterialButton toursButton = view.findViewById(R.id.tours_button);
+        MaterialButton hotelsButton = view.findViewById(R.id.hotels_button);
+        MaterialButton schedulerButton = view.findViewById(R.id.scheduler_button);
+        MaterialButton assistantButton = view.findViewById(R.id.assistant_button);
+        MaterialButton translatorButton = view.findViewById(R.id.translator_button);
 
         busTicketButton.setOnClickListener(v -> {
-            requireActivity().startActivity(new Intent(requireContext(), BusTicketActivity.class));
+            requireActivity().startActivity(new Intent(requireContext(), BusMainActivity.class));
         });
+        flightTicketButton.setOnClickListener(v -> {
+            requireActivity().startActivity(new Intent(requireContext(), FlightMainActivity.class));
+        });
+        toursButton.setOnClickListener(v -> {
+            requireActivity().startActivity(new Intent(requireContext(), ToursListActivity.class));
+        });
+        hotelsButton.setOnClickListener(v -> {
+            requireActivity().startActivity(new Intent(requireContext(), HotelsListActivity.class));
+        });
+        schedulerButton.setOnClickListener(v -> {
+            requireActivity().startActivity(new Intent(requireContext(), TouristSchedulerActivity.class));
+        });
+        assistantButton.setOnClickListener(v -> {
+            requireActivity().startActivity(new Intent(requireContext(), AssistantChatActivity.class));
+        });
+//        translatorButton.setOnClickListener(v -> {
+//            requireActivity().startActivity(new Intent(requireContext(), TranslatorActivity.class));
+//        });
+
 
         new Thread(() -> {
-            Glide.get(context).clearDiskCache();
+            Glide.get(requireContext()).clearDiskCache();
             try {
                 new Thread(() -> {
                     RecyclerView carouselRecyclerView = view.findViewById(R.id.carousel_recycler_view);
@@ -82,14 +108,15 @@ public class HomeFragment extends Fragment {
                                     new CarouselItem(R.drawable.falk,
                                             "فلک الافلاک", "جاذبه ی گردشگری خرم آباد"),
                                     new CarouselItem(R.drawable.falk2,
-                                            "فلک الافلاک", "جاذبه ی گردشگری خرم آباد")));
+                                            "فلک الافلاک", "جاذبه ی گردشگری خرم آباد")),
+                            requireActivity());
 
                     CarouselLayoutManager carouselManager = new CarouselLayoutManager(new HeroCarouselStrategy());
                     carouselManager.setCarouselAlignment(CarouselLayoutManager.ALIGNMENT_START);
                     SnapHelper snapHelper = new CarouselSnapHelper();
                     snapHelper.attachToRecyclerView(carouselRecyclerView);
 
-                    activity.runOnUiThread(() -> {
+                    requireActivity().runOnUiThread(() -> {
                         carouselRecyclerView.setAdapter(carouselRecyclerAdapter);
                         carouselRecyclerView.setLayoutManager(carouselManager);
                         carouselRecyclerView.setVisibility(View.VISIBLE);
@@ -100,26 +127,26 @@ public class HomeFragment extends Fragment {
                     TextView title = view.findViewById(R.id.near_you_title);
                     RecyclerView nearYouCardRecycler = view.findViewById(R.id.near_you_card_view_recycler);
                     MediumCardViewRecyclerAdapter mediumCardViewRecyclerAdapter1 = new MediumCardViewRecyclerAdapter(Arrays
-                            .asList(new MediumCardItem(( R.drawable.falk),
+                            .asList(new MediumCardItem((R.drawable.falk),
                                             "فلک الافلاک", "جاذبه ی گردشگری خرم آباد"),
-                                    new MediumCardItem(( R.drawable.falk2),
+                                    new MediumCardItem((R.drawable.falk2),
                                             "آبشار بیشه", "جاذبه ی گردشگری خرم آباد"),
-                                    new MediumCardItem(( R.drawable.falk),
+                                    new MediumCardItem((R.drawable.falk),
                                             "آبشار بیشه", "جاذبه ی گردشگری خرم آباد"),
-                                    new MediumCardItem(( R.drawable.falk2),
+                                    new MediumCardItem((R.drawable.falk2),
                                             "آبشار بیشه", "جاذبه ی گردشگری خرم آباد"),
-                                    new MediumCardItem(( R.drawable.falk),
+                                    new MediumCardItem((R.drawable.falk),
                                             "آبشار بیشه", "جاذبه ی گردشگری خرم آباد"),
-                                    new MediumCardItem(( R.drawable.falk2),
+                                    new MediumCardItem((R.drawable.falk2),
                                             "آبشار بیشه", "جاذبه ی گردشگری خرم آباد")));
-                    LinearLayoutManager linearLayoutManager1 = new LinearLayoutManager(context);
+                    LinearLayoutManager linearLayoutManager1 = new LinearLayoutManager(requireContext());
                     linearLayoutManager1.setOrientation(LinearLayoutManager.HORIZONTAL);
 
                     mediumCardViewRecyclerAdapter1.setOnItemClickListener(v -> {
-                        startActivity(new Intent(getContext(), PlaceEventFragment.class));
+                        startActivity(new Intent(getContext(), PlaceEventActivity.class));
                     });
 
-                    activity.runOnUiThread(() -> {
+                    requireActivity().runOnUiThread(() -> {
                         nearYouCardRecycler.setAdapter(mediumCardViewRecyclerAdapter1);
                         nearYouCardRecycler.setLayoutManager(linearLayoutManager1);
                         nearYouCardRecycler.setVisibility(View.VISIBLE);
@@ -148,7 +175,7 @@ public class HomeFragment extends Fragment {
 //                        title.setVisibility(View.VISIBLE);
 //                    });
 //                }).start();
-
+//
 //                new Thread(() -> {
 //                    TextView title = view.findViewById(R.id.travel_tickets_title);
 //                    RecyclerView travelTicketCardRecycler = view.findViewById(R.id.travel_tickets_card_view_recycler);
