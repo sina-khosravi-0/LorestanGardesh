@@ -1,31 +1,86 @@
 package com.example.lorestangardesh.ui.main;
 
 import android.animation.LayoutTransition;
+import android.content.BroadcastReceiver;
+import android.content.Context;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.HorizontalScrollView;
 import android.widget.LinearLayout;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.widget.PopupMenu;
 import androidx.fragment.app.Fragment;
+import androidx.localbroadcastmanager.content.LocalBroadcastManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.lorestangardesh.MainActivity;
 import com.example.lorestangardesh.R;
+import com.example.lorestangardesh.db.DataManager;
+import com.example.lorestangardesh.db.Location;
+import com.example.lorestangardesh.statics.Intents;
 import com.example.lorestangardesh.ui.PlaceEventActivity;
 import com.example.lorestangardesh.ui.searchresult.SearchResultItem;
 import com.example.lorestangardesh.ui.searchresult.SearchResultRecyclerAdapter;
 import com.google.android.material.chip.Chip;
 import com.google.android.material.chip.ChipGroup;
 
+import org.json.JSONException;
+
 import java.util.Arrays;
+import java.util.List;
+import java.util.stream.Collectors;
 
 public class SearchFragment extends Fragment {
+    private RecyclerView searchResultRecyclerView;
+    private List<Location> locations;
+    private final BroadcastReceiver searchBr = new BroadcastReceiver() {
+        @Override
+        public void onReceive(Context context, Intent intent) {
+            new Thread(() -> {
+                if (MainActivity.getQueryTerm().isEmpty()) {
+                    try {
+                        DataManager.getInstance().fetchAllLocations();
+                    } catch (JSONException e) {
+                        throw new RuntimeException(e);
+                    }
+                    locations = DataManager.getInstance().getAllLocations();
+
+                } else {
+                    locations = DataManager.getInstance().getSearchResults(MainActivity.getQueryTerm());
+                }
+
+                SearchFragment.this.requireActivity().runOnUiThread(() -> {
+                    if (locations.isEmpty()) {
+                        Toast.makeText(requireContext(), R.string.nothing_found, Toast.LENGTH_SHORT).show();
+                        return;
+                    }
+                    SearchResultRecyclerAdapter searchResultAdapter = new SearchResultRecyclerAdapter(locations.stream().map(location -> {
+                        String photo = "";
+                        if (location.getPhotos() !=null && !location.getPhotos().isEmpty()) {
+                            photo = location.getPhotos().get(0);
+                        }
+                        return new SearchResultItem(photo, location.getTitle(),
+                                String.format("%1.100s", location.getDescription()), "قابل بازدید");
+                    }).collect(Collectors.toList()));
+                    searchResultRecyclerView.setAdapter(searchResultAdapter);
+                    searchResultAdapter.setOnItemClickListener(position -> {
+                        Intent intention = new Intent(getActivity(), PlaceEventActivity.class);
+                        intention.putExtra("id", Integer.valueOf(locations.get(position).getId()));
+                        startActivity(intention);
+                    });
+                });
+            }).start();
+
+        }
+    };
 
     public static SearchFragment newInstance() {
         return new SearchFragment();
@@ -46,12 +101,13 @@ public class SearchFragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+
         HorizontalScrollView scrollView = view.findViewById(R.id.filter_scroll_view);
         LinearLayout filterLinearLayout = view.findViewById(R.id.filter_linear_layout);
         ChipGroup filterChipGroup = view.findViewById(R.id.filter_chip_group);
         ChipGroup sortTypeChipGroup = view.findViewById(R.id.sort_type_chip_group);
         Chip sortTypeChip = view.findViewById(R.id.sort_type_chip);
-        RecyclerView searchResultRecyclerView = view.findViewById(R.id.tour_items_recycler);
+        searchResultRecyclerView = view.findViewById(R.id.tour_items_recycler);
 
         sortTypeChip.setOnClickListener(v -> {
             PopupMenu popupMenu = new PopupMenu(requireContext(), sortTypeChip);
@@ -67,25 +123,53 @@ public class SearchFragment extends Fragment {
         filterChipGroup.getLayoutTransition().enableTransitionType(LayoutTransition.CHANGING);
         sortTypeChipGroup.getLayoutTransition().enableTransitionType(LayoutTransition.CHANGING);
 
-        SearchResultRecyclerAdapter searchResultAdapter = new SearchResultRecyclerAdapter(Arrays.asList(
-                new SearchResultItem(R.drawable.falk, "فلک الافلاک",
-                        "آثار باستانی خرم آباد", "قابل بازدید"),
-                new SearchResultItem(R.drawable.falk2, "آبشار بیشه",
-                        "طبیعت لرستان", "قابل بازدید"),
-                new SearchResultItem(R.drawable.falk, "فلک الافلاک",
-                        "آثار باستانی خرم آباد", "قابل بازدید"),
-                new SearchResultItem(R.drawable.falk2, "آبشار بیشه",
-                        "طبیعت لرستان", "قابل بازدید"),
-                new SearchResultItem(R.drawable.falk, "فلک الافلاک",
-                        "آثار باستانی خرم آباد", "قابل بازدید"),
-                new SearchResultItem(R.drawable.falk2, "آبشار بیشه",
-                        "طبیعت لرستان", "قابل بازدید")));
-        searchResultRecyclerView.setAdapter(searchResultAdapter);
-        searchResultRecyclerView.setLayoutManager(new LinearLayoutManager(requireContext()));
+        List<Location> allLocations = DataManager.getInstance().getAllLocations();
 
-        searchResultAdapter.setOnItemClickListener(position -> {
-            startActivity(new Intent(requireActivity(), PlaceEventActivity.class));
-        });
+        if (MainActivity.getQueryTerm().isEmpty()) {
+            SearchResultRecyclerAdapter searchResultAdapter = new SearchResultRecyclerAdapter(allLocations.stream().map(location -> {
+                String photo = "";
+                if (location.getPhotos() !=null && !location.getPhotos().isEmpty()) {
+                    photo = location.getPhotos().get(0);
+                }
+                return new SearchResultItem(photo, location.getTitle(),
+                        String.format("%1.100s", location.getDescription()), "");
+            }).collect(Collectors.toList()));
+            searchResultRecyclerView.setAdapter(searchResultAdapter);
+            searchResultRecyclerView.setLayoutManager(new LinearLayoutManager(requireContext()));
+            searchResultAdapter.setOnItemClickListener(position -> {
+                Intent intent = new Intent(getActivity(), PlaceEventActivity.class);
+                intent.putExtra("id", Integer.valueOf(allLocations.get(position).getId()));
+                startActivity(intent);
+            });
+        } else {
+            new Thread(() -> {
+                List<Location> locations = DataManager.getInstance().getSearchResults(MainActivity.getQueryTerm());
+
+                SearchFragment.this.requireActivity().runOnUiThread(() -> {
+                    if (locations.isEmpty()) {
+                        Toast.makeText(requireContext(), R.string.nothing_found, Toast.LENGTH_SHORT).show();
+                        return;
+                    }
+                    SearchResultRecyclerAdapter searchResultAdapter = new SearchResultRecyclerAdapter(locations.stream().map(location -> {
+                        String photo = "";
+                        if (location.getPhotos() !=null && !location.getPhotos().isEmpty()) {
+                            photo = location.getPhotos().get(0);
+                        }
+                        return new SearchResultItem(photo, location.getTitle(),
+                                String.format("%1.100s", location.getDescription()), "قابل بازدید");
+                    }).collect(Collectors.toList()));
+                    searchResultRecyclerView.setAdapter(searchResultAdapter);
+                    searchResultRecyclerView.setLayoutManager(new LinearLayoutManager(requireContext()));
+                    searchResultAdapter.setOnItemClickListener(position -> {
+                        Intent intent = new Intent(getActivity(), PlaceEventActivity.class);
+                        intent.putExtra("id", Integer.valueOf(locations.get(position).getId()));
+                        startActivity(intent);
+                    });
+                });
+
+            }).start();
+        }
+
 
 //        for (int i = 0; i < filterChipGroup.getChildCount(); i++) {
 //            Chip chip = (Chip) filterChipGroup.getChildAt(i);
@@ -103,5 +187,12 @@ public class SearchFragment extends Fragment {
 //        suggestCard.setOnClickListener(v -> {
 //            startActivity(new Intent(getContext(), PlaceEventFragment.class));
 //        });
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        LocalBroadcastManager lbm = LocalBroadcastManager.getInstance(requireActivity());
+        lbm.registerReceiver(searchBr, new IntentFilter(Intents.SEARCH_INTENT));
     }
 }

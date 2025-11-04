@@ -101,4 +101,27 @@
     <string name="user">کاربر</string>
     <string name="starting_city">شهر مبدا</string>
     <string name="destination_city">شهر مقصد</string>
+    <string name="historical">تاریخی</string>
+    <string name="restaurant">رستوران</string>
+    <string name="hotel">هتل</string>
+    <string name="cafe">کافه</string>
+    <string name="shop">فروشگاه</string>
+    <string name="park">پارک</string>
+    <string name="nothing_found">چیزی پیدا نشد</string>
+    <string name="small">کوچک</string>
+    <string name="medium">متوسط</string>
+    <string name="big">بزرگ</string>
+    <string name="monday">دوشنبه</string>
+    <string name="tuesday">سه شنبه</string>
+    <string name="wednesday">چهارشنبه</string>
+    <string name="thursday">پنجشنبه</string>
+    <string name="friday">جمعه</string>
+    <string name="saturday">شنبه</string>
+    <string name="sunday">یکشنبه</string>
+    <string name="working_hours">ساعات کاری</string>
+    <string name="nearest_locations">نزدیک ترین مکان ها</string>
+    <string name="distance">فاصله</string>
+    <string name="please_wait">لطفا صبر کنید</string>
+    <string name="phone_number">شماره تلفن</string>
+    <string name="near_me">نزدیک من</string>
 </resources>

@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="8dp"
+    android:animateLayoutChanges="true"
+    tools:layoutDirection="ltr">
+
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/bot_bubble"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="20dp"
+        android:background="@drawable/out_chat_bubble_background"
+        android:backgroundTint="?attr/colorTertiary"
+        android:minHeight="50dp"
+        android:padding="8dp"
+        android:paddingStart="16dp"
+        android:paddingEnd="16dp"
+        android:textColor="?attr/colorOnPrimary"
+        tools:text="@string/test_text"
+        tools:ignore="RtlSymmetry" />
+</FrameLayout>

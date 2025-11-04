@@ -1,15 +1,19 @@
 package com.example.lorestangardesh.ui.carousel;
 
+import static com.example.lorestangardesh.statics.Constants.API_ADDRESS;
+
 import android.graphics.Bitmap;
+
+import com.example.lorestangardesh.statics.Constants;
 
 public class CarouselItem {
     public int imageId;
-    public Bitmap image;
+    public String imagePath;
     public String title;
     public String description;
 
-    public CarouselItem(Bitmap image, String title, String description) {
-        this.image = image;
+    public CarouselItem(String imagePath, String title, String description) {
+        this.imagePath = imagePath;
         this.title = title;
         this.description = description;
     }

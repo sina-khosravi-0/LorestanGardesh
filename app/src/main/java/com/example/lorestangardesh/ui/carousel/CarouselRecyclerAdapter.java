@@ -68,23 +68,25 @@ public class CarouselRecyclerAdapter extends RecyclerView.Adapter<CarouselRecycl
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
 //        holder.image.setImageBitmap(items.get(position).image);
-        Glide.with(recyclerView.getContext()).load(items.get(position).imageId).diskCacheStrategy(DiskCacheStrategy.ALL).into(holder.image);
+//        Glide.with(recyclerView.getContext()).load(items.get(position).imageId).diskCacheStrategy(DiskCacheStrategy.ALL).into(holder.image);
+        Glide.with(activity.getApplicationContext()).load(items.get(position).imagePath)
+                .diskCacheStrategy(DiskCacheStrategy.ALL).into(holder.image);
         holder.title.setText(items.get(position).title);
         holder.description.setText(items.get(position).description);
 //        setAnimation(holder.itemView, position);
         if (items.get(position).title == null && items.get(position).description == null) {
             holder.textContainer.setVisibility(View.GONE);
         }
-        holder.image.setOnClickListener(v -> {
-            ActivityOptions options = ActivityOptions.makeSceneTransitionAnimation(
-                    activity,
-                    recyclerView,
-                    "gallery");
-            Intent intent = new Intent(activity, FullScreenImageActivity.class);
-            intent.putExtra("carouselPosition", position);
-            System.out.println(position);
-            activity.startActivity(intent, options.toBundle());
-        });
+//        holder.image.setOnClickListener(v -> {
+//            ActivityOptions options = ActivityOptions.makeSceneTransitionAnimation(
+//                    activity,
+//                    recyclerView,
+//                    "gallery");
+//            Intent intent = new Intent(activity, FullScreenImageActivity.class);
+//            intent.putExtra("carouselPosition", position);
+//
+//            activity.startActivity(intent, options.toBundle());
+//        });
     }
 
     private void setAnimation(View viewToAnimate, int position) {

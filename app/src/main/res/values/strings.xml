@@ -102,4 +102,27 @@
     <string name="user">User</string>
     <string name="starting_city">Starting city</string>
     <string name="destination_city">Destination city</string>
+    <string name="historical">Historical</string>
+    <string name="restaurant">Restaurant</string>
+    <string name="hotel">Hotel</string>
+    <string name="cafe">Cafe</string>
+    <string name="shop">Shop</string>
+    <string name="park">Park</string>
+    <string name="nothing_found">Nothing Found</string>
+    <string name="small">Small</string>
+    <string name="medium">Medium</string>
+    <string name="big">Big</string>
+    <string name="monday">Monday</string>
+    <string name="tuesday">Tuesday</string>
+    <string name="wednesday">Wednesday</string>
+    <string name="thursday">Thursday</string>
+    <string name="friday">Friday</string>
+    <string name="saturday">Saturday</string>
+    <string name="sunday">Sunday</string>
+    <string name="working_hours">Working Hours</string>
+    <string name="nearest_locations">Nearest Locations</string>
+    <string name="distance">Distance</string>
+    <string name="phone_number">Phone Number</string>
+    <string name="please_wait">Please Wait...</string>
+    <string name="near_me">Near me</string>
 </resources>

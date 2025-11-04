@@ -1,15 +1,13 @@
 package com.example.lorestangardesh.ui.mediumcard;
 
-import android.graphics.Bitmap;
-
 public class MediumCardItem {
     public int imageId;
-    public Bitmap image;
+    public String photo;
     public String title;
     public String description;
 
-    public MediumCardItem(Bitmap image, String title, String description) {
-        this.image = image;
+    public MediumCardItem(String photo, String title, String description) {
+        this.photo = photo;
         this.title = title;
         this.description = description;
     }

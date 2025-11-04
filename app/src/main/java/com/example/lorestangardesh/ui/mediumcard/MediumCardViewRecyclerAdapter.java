@@ -25,7 +25,7 @@ import java.util.List;
 public class MediumCardViewRecyclerAdapter extends RecyclerView.Adapter<MediumCardViewRecyclerAdapter.ViewHolder> {
     private List<MediumCardItem> items;
     private Context context;
-    private OnItemClickListener onItemClickListener = v -> {
+    private OnItemClickListener onItemClickListener = (v, position) -> {
     };
 
 
@@ -43,11 +43,11 @@ public class MediumCardViewRecyclerAdapter extends RecyclerView.Adapter<MediumCa
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
 //        holder.image.setImageBitmap(items.get(position).image);
-        Glide.with(holder.itemView.getContext()).load(items.get(position).imageId).diskCacheStrategy(DiskCacheStrategy.ALL).into(holder.image);
+        Glide.with(holder.itemView.getContext()).load(items.get(position).photo).diskCacheStrategy(DiskCacheStrategy.ALL).into(holder.image);
         holder.title.setText(items.get(position).title);
         holder.description.setText(items.get(position).description);
         holder.itemView.setOnClickListener(view -> {
-            onItemClickListener.onClick(holder.itemView);
+            onItemClickListener.onClick(holder.itemView, position);
         });
 //        setAnimation(holder.itemView, position);
     }
@@ -70,7 +70,7 @@ public class MediumCardViewRecyclerAdapter extends RecyclerView.Adapter<MediumCa
     }
 
     public interface OnItemClickListener {
-        void onClick(View view);
+        void onClick(View view, int position);
     }
 
     public static class ViewHolder extends RecyclerView.ViewHolder {

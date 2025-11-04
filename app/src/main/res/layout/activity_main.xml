@@ -40,7 +40,7 @@
                 android:clickable="true"
                 android:focusable="true"
                 android:hint="@string/search_bar_hint"
-                app:menu="@menu/topbar_menu" />
+                />
         </com.google.android.material.appbar.AppBarLayout>
 
         <com.google.android.material.search.SearchView

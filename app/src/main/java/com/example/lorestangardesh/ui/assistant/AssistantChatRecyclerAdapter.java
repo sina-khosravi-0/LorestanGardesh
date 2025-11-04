@@ -8,13 +8,16 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.lorestangardesh.databinding.AssistantFragmentChatBubbleBinding;
+import com.example.lorestangardesh.databinding.AssistantFragmentBotBubbleBinding;
+import com.example.lorestangardesh.databinding.AssistantFragmentUserBubbleBinding;
+import com.example.lorestangardesh.ui.mediumcard.MediumCardViewRecyclerAdapter;
 
 import java.util.ArrayList;
 
-public class AssistantChatRecyclerAdapter extends RecyclerView.Adapter<AssistantChatRecyclerAdapter.ViewHolder> {
+public class AssistantChatRecyclerAdapter extends RecyclerView.Adapter {
     private ArrayList<AssistantChatItem> items;
-
+    private AssistantChatRecyclerAdapter.OnBubbleCreatedListener onItemClickListener = (v, position) -> {
+    };
     public AssistantChatRecyclerAdapter(ArrayList<AssistantChatItem> items) {
         this.items = items;
     }
@@ -22,23 +25,36 @@ public class AssistantChatRecyclerAdapter extends RecyclerView.Adapter<Assistant
     public void addItem(AssistantChatItem item) {
         items.add(item);
     }
+    public interface OnBubbleCreatedListener {
+        void onClick(View view, int position);
+    }
 
     @NonNull
     @Override
-    public AssistantChatRecyclerAdapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        return new AssistantChatRecyclerAdapter.ViewHolder(AssistantFragmentChatBubbleBinding.inflate(LayoutInflater.from(parent.getContext()), parent, false));
+    public RecyclerView.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+        if (viewType == 0) {
+            return new AssistantChatRecyclerAdapter.BotViewHolder(AssistantFragmentBotBubbleBinding.inflate(LayoutInflater.from(parent.getContext()), parent, false));
+        } else {
+            return new AssistantChatRecyclerAdapter.UserViewHolder(AssistantFragmentUserBubbleBinding.inflate(LayoutInflater.from(parent.getContext()), parent, false));
+        }
     }
 
     @Override
-    public void onBindViewHolder(@NonNull AssistantChatRecyclerAdapter.ViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, int position) {
         if (items.get(position).incoming) {
-            holder.incomingBubble.setText(items.get(position).text);
-            holder.incomingBubble.setVisibility(View.VISIBLE);
-            holder.outgoingBubble.setVisibility(View.GONE);
+            ((BotViewHolder) holder).botBubble.setText(items.get(position).text);
+            onItemClickListener.onClick(holder.itemView, position);
         } else {
-            holder.outgoingBubble.setText(items.get(position).text);
-            holder.outgoingBubble.setVisibility(View.VISIBLE);
-            holder.incomingBubble.setVisibility(View.GONE);
+            ((UserViewHolder) holder).userBubble.setText(items.get(position).text);
+        }
+    }
+
+    @Override
+    public int getItemViewType(int position) {
+        if (items.get(position).incoming) {
+            return 0;
+        } else {
+            return 1;
         }
     }
 
@@ -46,16 +62,27 @@ public class AssistantChatRecyclerAdapter extends RecyclerView.Adapter<Assistant
     public int getItemCount() {
         return items.size();
     }
+    public void setOnBotBubbleCreatedListener(OnBubbleCreatedListener onBubbleCreatedListener) {
+        this.onItemClickListener = onBubbleCreatedListener;
+    }
+    public static class UserViewHolder extends RecyclerView.ViewHolder {
+        private TextView userBubble;
 
-    public static class ViewHolder extends RecyclerView.ViewHolder {
-        private TextView incomingBubble;
-        private TextView outgoingBubble;
-
-        public ViewHolder(AssistantFragmentChatBubbleBinding binding) {
+        public UserViewHolder(AssistantFragmentUserBubbleBinding binding) {
             super(binding.getRoot());
-            this.incomingBubble = binding.incomingBubble;
-            this.outgoingBubble = binding.outgoingBubble;
+            this.userBubble = binding.userBubble;
 
         }
     }
+
+    public static class BotViewHolder extends RecyclerView.ViewHolder {
+        private TextView botBubble;
+
+        public BotViewHolder(AssistantFragmentBotBubbleBinding binding) {
+            super(binding.getRoot());
+            this.botBubble = binding.botBubble;
+
+        }
+    }
+
 }

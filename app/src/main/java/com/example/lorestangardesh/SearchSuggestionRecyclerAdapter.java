@@ -10,7 +10,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
-import com.example.lorestangardesh.databinding.MainSearchSuggestionItemBinding;
+import com.example.lorestangardesh.databinding.ItemsMainSearchSuggestionBinding;
 import com.example.lorestangardesh.ui.OnItemClickListener;
 import com.google.android.material.imageview.ShapeableImageView;
 
@@ -27,7 +27,7 @@ public class SearchSuggestionRecyclerAdapter extends RecyclerView.Adapter<Search
     @NonNull
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        return new ViewHolder(MainSearchSuggestionItemBinding.inflate(LayoutInflater.from(parent.getContext()), parent, false));
+        return new ViewHolder(ItemsMainSearchSuggestionBinding.inflate(LayoutInflater.from(parent.getContext()), parent, false));
     }
 
     @Override
@@ -50,7 +50,7 @@ public class SearchSuggestionRecyclerAdapter extends RecyclerView.Adapter<Search
         private TextView title;
         private TextView text;
 
-        public ViewHolder(MainSearchSuggestionItemBinding binding) {
+        public ViewHolder(ItemsMainSearchSuggestionBinding binding) {
             super(binding.getRoot());
             imageView = binding.image;
             title = binding.title;

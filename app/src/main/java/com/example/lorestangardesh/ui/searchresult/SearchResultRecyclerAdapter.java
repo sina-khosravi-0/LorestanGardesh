@@ -1,6 +1,7 @@
 package com.example.lorestangardesh.ui.searchresult;
 
 import android.view.LayoutInflater;
+import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -20,6 +21,11 @@ public class SearchResultRecyclerAdapter extends RecyclerView.Adapter<SearchResu
     private OnItemClickListener onItemClickListener;
     public SearchResultRecyclerAdapter(List<SearchResultItem> items) {
         this.items = items;
+        System.out.println(items);
+    }
+
+    public void setItems(List<SearchResultItem> items) {
+        this.items = items;
     }
 
     @NonNull
@@ -30,10 +36,20 @@ public class SearchResultRecyclerAdapter extends RecyclerView.Adapter<SearchResu
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-        Glide.with(holder.itemView.getContext()).load(items.get(position).imageId).diskCacheStrategy(DiskCacheStrategy.ALL).into(holder.imageView);
+        if (items.get(position).photo.isEmpty()){
+            holder.imageView.setVisibility(View.GONE);
+        } else {
+            holder.imageView.setVisibility(View.VISIBLE);
+            Glide.with(holder.itemView.getContext()).load(items.get(position).photo).diskCacheStrategy(DiskCacheStrategy.ALL).into(holder.imageView);
+        }
         holder.titleTextView.setText(items.get(position).title);
         holder.supportTextView.setText(items.get(position).supportText);
-        holder.serviceStatusTextView.setText(items.get(position).serviceStatus);
+        if (items.get(position).distance.isEmpty()) {
+            holder.distanceTextView.setVisibility(View.GONE);
+        } else {
+            holder.distanceTextView.setText(items.get(position).distance);
+            holder.distanceTextView.setVisibility(View.VISIBLE);
+        }
     }
 
     @Override
@@ -50,14 +66,14 @@ public class SearchResultRecyclerAdapter extends RecyclerView.Adapter<SearchResu
         private ImageView imageView;
         private TextView titleTextView;
         private TextView supportTextView;
-        private TextView serviceStatusTextView;
+        private TextView distanceTextView;
 
         public ViewHolder(SearchFragmentSearchResultBinding binding) {
             super(binding.getRoot());
             imageView = binding.image;
-            titleTextView = binding.title;
+            titleTextView = binding.titleText;
             supportTextView = binding.supportText;
-            serviceStatusTextView = binding.serviceStatus;
+            distanceTextView = binding.serviceStatus;
             itemView.setOnClickListener(v -> {
                 if (getAdapterPosition() != RecyclerView.NO_POSITION) {
                     onItemClickListener.onClick(getAdapterPosition());

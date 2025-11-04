@@ -2,6 +2,11 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools">
 
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+
     <application
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
@@ -12,18 +17,10 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.MyApplication"
+        android:usesCleartextTraffic="true"
         tools:targetApi="31">
         <activity
-            android:name=".ui.flight.FlightMainActivity"
-            android:exported="false" />
-        <activity
-            android:name=".ui.bus.BusMainActivity"
-            android:exported="false" />
-        <activity
-            android:name=".ui.tours.ToursListActivity"
-            android:exported="false" />
-        <activity
-            android:name=".ui.hotel.HotelsListActivity"
+            android:name=".ui.main.RealtimeSuggestionActivity"
             android:exported="false" />
         <activity
             android:name=".ui.scheduler.TouristSchedulerActivity"
@@ -33,16 +30,11 @@
             android:name=".ui.assistant.AssistantChatActivity"
             android:exported="false" />
         <activity
-            android:name=".ui.tours.single.TourActivity"
-            android:configChanges="orientation|screenSize"
-            android:exported="false" />
-        <activity
             android:name=".ui.PlaceEventActivity"
             android:exported="false" />
         <activity
             android:name=".FullScreenImageActivity"
             android:exported="false" />
-
         <activity
             android:name=".MainActivity"
             android:exported="true">
