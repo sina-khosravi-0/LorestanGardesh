@@ -21,6 +21,12 @@ import com.google.android.material.button.MaterialButton;
 import org.json.JSONException;
 
 import java.util.ArrayList;
+import java.util.List;
+
+import io.noties.markwon.Markwon;
+import io.noties.markwon.MarkwonPlugin;
+import io.noties.markwon.ext.tables.TablePlugin;
+import io.noties.markwon.linkify.LinkifyPlugin;
 
 public class AssistantChatActivity extends AppCompatActivity {
     @Override
@@ -32,13 +38,18 @@ public class AssistantChatActivity extends AppCompatActivity {
         RecyclerView chatBubbleRecycler = findViewById(R.id.chat_bubble_recycler);
         MaterialButton sendButton = findViewById(R.id.send_button);
         EditText inputEditText = findViewById(R.id.input_edit_text);
-        AssistantChatRecyclerAdapter assistantChatAdapter = new AssistantChatRecyclerAdapter(new ArrayList<>());
+
+        AssistantChatRecyclerAdapter assistantChatAdapter = new AssistantChatRecyclerAdapter(new ArrayList<>(), getApplicationContext());
 
         chatBubbleRecycler.setAdapter(assistantChatAdapter);
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
 
         linearLayoutManager.setStackFromEnd(true);
         chatBubbleRecycler.setLayoutManager(linearLayoutManager);
+        Markwon markwon = Markwon.builder(getApplicationContext())
+                .usePlugin(TablePlugin.create(getApplicationContext()))
+                .usePlugin(LinkifyPlugin.create())
+                .build();
         sendButton.setOnClickListener(v -> {
 
             sendButton.setEnabled(false);
@@ -62,16 +73,21 @@ public class AssistantChatActivity extends AppCompatActivity {
             assistantChatAdapter.setOnBotBubbleCreatedListener((view, position) -> {
                 TextView botTextView = (TextView) view.findViewById(R.id.bot_bubble);
                 new Thread(() -> {
+                    boolean flag = true;
+//                    while (flag) {
                     try {
                         String assistantResponse = DataManager.getInstance().getAssistantResponse();
                         ASSISTANT_CONVERSATION_LIST.add(new PromptObject("assistant", assistantResponse));
                         runOnUiThread(() -> {
-                            botTextView.setText(assistantResponse);
+                            markwon.setMarkdown(botTextView, assistantResponse);
                             sendButton.setEnabled(true);
                             inputEditText.setEnabled(true);
                         });
+                        flag = false;
                     } catch (JSONException e) {
+                        e.printStackTrace();
                     }
+//                    }
                 }).start();
             });
 

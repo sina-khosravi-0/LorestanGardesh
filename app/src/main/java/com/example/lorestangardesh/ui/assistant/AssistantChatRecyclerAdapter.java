@@ -1,5 +1,6 @@
 package com.example.lorestangardesh.ui.assistant;
 
+import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,12 +15,17 @@ import com.example.lorestangardesh.ui.mediumcard.MediumCardViewRecyclerAdapter;
 
 import java.util.ArrayList;
 
+import io.noties.markwon.Markwon;
+import io.noties.markwon.ext.tables.TablePlugin;
+
 public class AssistantChatRecyclerAdapter extends RecyclerView.Adapter {
+    Markwon markwon;
     private ArrayList<AssistantChatItem> items;
     private AssistantChatRecyclerAdapter.OnBubbleCreatedListener onItemClickListener = (v, position) -> {
     };
-    public AssistantChatRecyclerAdapter(ArrayList<AssistantChatItem> items) {
+    public AssistantChatRecyclerAdapter(ArrayList<AssistantChatItem> items, Context context) {
         this.items = items;
+        this.markwon = Markwon.builder(context).usePlugin(TablePlugin.create(context)).build();
     }
 
     public void addItem(AssistantChatItem item) {
@@ -42,7 +48,8 @@ public class AssistantChatRecyclerAdapter extends RecyclerView.Adapter {
     @Override
     public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, int position) {
         if (items.get(position).incoming) {
-            ((BotViewHolder) holder).botBubble.setText(items.get(position).text);
+            markwon.setMarkdown(((BotViewHolder) holder).botBubble, items.get(position).text);
+//            ((BotViewHolder) holder).botBubble.setText(items.get(position).text);
             onItemClickListener.onClick(holder.itemView, position);
         } else {
             ((UserViewHolder) holder).userBubble.setText(items.get(position).text);

@@ -1,9 +1,12 @@
 pluginManagement {
     repositories {
-        google()
+        maven { url "https://jitpack.io" }
         mavenCentral()
+        google()
+        maven {
+            url 'https://www.datanucleus.org/downloads/maven2/'
+        }
         gradlePluginPortal()
-        mavenLocal()
     }
 }
 dependencyResolutionManagement {
@@ -11,7 +14,8 @@ dependencyResolutionManagement {
     repositories {
         google()
         mavenCentral()
-        maven { url 'https://jitpack.io' }
+        maven { url 'https://www.datanucleus.org/downloads/maven2/' }
+        maven { url "https://jitpack.io" }
     }
 }
 rootProject.name = "Gardesh Project"

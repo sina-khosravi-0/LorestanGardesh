@@ -25,6 +25,7 @@ import com.example.lorestangardesh.statics.TypeMapper;
 import com.example.lorestangardesh.ui.PlaceEventActivity;
 import com.example.lorestangardesh.R;
 import com.example.lorestangardesh.ui.assistant.AssistantChatActivity;
+import com.example.lorestangardesh.ui.assistant.AssistantChatRecyclerAdapter;
 import com.example.lorestangardesh.ui.carousel.CarouselItem;
 import com.example.lorestangardesh.ui.carousel.CarouselRecyclerAdapter;
 import com.example.lorestangardesh.ui.mediumcard.MediumCardItem;
@@ -41,6 +42,9 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
+
+import io.noties.markwon.Markwon;
+import io.noties.markwon.ext.tables.TablePlugin;
 
 public class HomeFragment extends Fragment {
 
@@ -66,7 +70,6 @@ public class HomeFragment extends Fragment {
         super.onViewCreated(view, savedInstanceState);
         MaterialButton realtimeButton = view.findViewById(R.id.realtime_button);
         MaterialButton assistantButton = view.findViewById(R.id.assistant_button);
-
         realtimeButton.setOnClickListener(v -> {
             startActivity(new Intent(requireActivity(), RealtimeSuggestionActivity.class));
         });
@@ -171,6 +174,7 @@ public class HomeFragment extends Fragment {
 
             }
         }).start();
+
     }
 
     @Override

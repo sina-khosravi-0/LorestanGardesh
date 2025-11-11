@@ -11,6 +11,7 @@ import androidx.annotation.NonNull;
 import androidx.collection.LruCache;
 
 import com.android.volley.AuthFailureError;
+import com.android.volley.DefaultRetryPolicy;
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.toolbox.ImageLoader;
@@ -163,9 +164,14 @@ public class DatabaseHandlerSingleton {
                 return headers;
             }
         };
+        request.setRetryPolicy(new DefaultRetryPolicy(
+                50000,
+                0,
+                DefaultRetryPolicy.DEFAULT_BACKOFF_MULT
+        ));
         instance.addToRequestQueue(request);
         try {
-            return future.get(20, TimeUnit.SECONDS);
+            return future.get(50, TimeUnit.SECONDS);
 //            LocalBroadcastManager.getInstance(context).sendBroadcast(new Intent(MainActivity.UPDATE_USER_DATA_INTENT));
         } catch (InterruptedException | ExecutionException | TimeoutException ex) {
             Log.d("DatabaseHandler", ex.getMessage(), ex);
