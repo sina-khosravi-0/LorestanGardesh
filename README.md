@@ -58,7 +58,7 @@ This project demonstrates full-stack Android development experience, from UI des
 ---
 
 ## Skills Demonstrated
-- Built a complete multi-page Android app with Kotlin
+- Built a complete multi-page Android app with Java
 - Implemented **MVC** architecture
 - Consumed structured data for places and categories
 - Displayed **lists & dynamic content** using RecyclerView + custom adapters
