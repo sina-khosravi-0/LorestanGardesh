@@ -45,18 +45,6 @@ This project demonstrates full-stack Android development experience, from UI des
 
 ---
 
-## 📁 Project Structure (High Level)
-```
-/app
-  ├─ src/main/java/com/…/ui              # Activities / Fragments  
-  ├─ src/main/java/com/…/viewmodel       # ViewModel classes  
-  ├─ src/main/java/com/…/data             # Models, Repositories, DataSources  
-  ├─ src/main/res                        # Layouts, drawables, strings  
-  ├─ assets or /res/raw                  # Initial mock data (if used)  
-  └─ build.gradle …                      # Dependencies and configuration
-```
----
-
 ## Skills Demonstrated
 - Built a complete multi-page Android app with Java
 - Implemented **MVC** architecture
